@@ -41,15 +41,17 @@
         </li> -->
       </ul>
       <!-- <form class="d-flex" role="search"> -->
-        <button class="btn btn-outline-success mr-3" type="submit">Search</button>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <a class="btn btn-outline-success mr-3" href="/auth/signup">SignUp</a>
+        <button class="btn btn-outline-success" type="submit">SignIn</button>
       <!-- </form> -->
     </div>
   </div>
 </nav>
 </header>
 <main>
+  <div class="container mt-3">
     @yield('content')
+  </div>
 </main>
 </body>
 </html>
