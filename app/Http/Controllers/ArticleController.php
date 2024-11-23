@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -49,8 +50,9 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        $comments = Comment::where('article_id',$article->id)->get();
         $user = User::findOrFail($article->user_id);
-        return view('article.show', ['article'=>$article, 'user'=>$user]);
+        return view('article.show', ['article'=>$article, 'user'=>$user, 'comments'=>$comments]);
     }
 
     /**
