@@ -33,6 +33,9 @@ Route::controller(CommentController::class)->prefix('/comment')->middleware('aut
     Route::get('/{id}/edit', 'edit');
     Route::post('/{comment}/update', 'update');
     Route::get('/{id}/delete', 'delete');
+    Route::get('/index', 'index')->name('comment.index');
+    Route::get('/{comment}/accept', 'accept');
+    Route::get('/{comment}/reject', 'reject');
 });
 
 
