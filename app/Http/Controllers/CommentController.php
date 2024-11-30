@@ -7,8 +7,8 @@ use App\Models\Comment;
 use App\Models\Article;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\NewCommentMail;
+use App\Jobs\VeryLongJob;
+
 
 class CommentController extends Controller
 {
@@ -31,7 +31,7 @@ class CommentController extends Controller
         $comment->user_id = Auth::id();
 
         if ($comment->save()){
-            Mail::to('moosbeere_O@mail.ru')->send(new NewCommentMail($comment, $article->name));
+            VeryLongJob::dispatch($comment, $article->name);
             return redirect()->route('article.show', $comment->article_id)->with('status', 'New comment send to moderation');
         } 
 
