@@ -93,7 +93,7 @@ class CommentController extends Controller
         foreach($keys as $param){
             Cache::forget($param->key);
         }
-        $users = User::where('id', '!=', auth()->user()->id)->get();
+        $users = User::where('id', '!=', $comment->user_id)->get();
         $article = Article::findOrFail($comment->article_id);
         $comment->accept = true;
         if ($comment->save()) Notification::send($users, new NewCommentNotify($article, $comment->name));
